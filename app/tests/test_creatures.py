@@ -1,7 +1,6 @@
 import json
 import pytest
 
-@pytest.mark.skip()
 def test_get_no_creature(client):
     res = client.get('/creatures')
     assert res.status_code == 200
@@ -12,17 +11,15 @@ def test_sample_creature(sample_creature):
     assert sample_creature.name == 'Birds'
     
 
-# @pytest.mark.skip()
 def test_sample_winged_creature_fixture(sample_winged_creature):
     assert sample_winged_creature.id == 1
     assert sample_winged_creature.name == 'Flightless cormorant'
 
-@pytest.mark.skip()
 def test_lone_winged_creature_fixture(lone_winged_creature):
     assert lone_winged_creature.id == 1
     assert lone_winged_creature.name == "Zburator"
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_create_creature_with_winged_creature(client, sample_creature):
 
     winged_creature_info = {"name": "Flightless cormorant", "creature": sample_creature.id}
