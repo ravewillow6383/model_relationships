@@ -32,22 +32,22 @@ def client():
 @pytest.fixture()
 def sample_creature(client):
     creature = Creature(name='Birds')
-    db.session.add(Creature)
+    db.session.add(creature)
     db.session.commit()
     return creature
 
 @pytest.fixture()
-def sample_winged_creature():
+def sample_winged_creature(sample_creature):
     winged_creature = Winged_Creature(name='Flightless cormorant', creature=sample_creature)
     db.session.add(winged_creature)
-    db.commit()
+    db.session.commit()
     return winged_creature
 
 @pytest.fixture()
-def lone_winged_creature():
+def lone_winged_creature(client):
     winged_creature = Winged_Creature(name='Zburator')
     db.session.add(winged_creature)
-    db.commit()
+    db.session.commit()
     return winged_creature
 
 

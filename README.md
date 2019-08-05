@@ -18,3 +18,7 @@ UI installed flask, flask_sqlalchemy, flask migrate and sqlite for this project.
 
 ## License
 MIT
+
+# Updates
+
+8/4/2019: Passing most tests, still having trouble passing 'put' routes, create new creature and winged creature tests not passing.
