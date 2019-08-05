@@ -10,32 +10,30 @@ def test_get_no_creature(client):
 
     assert json.loads(res.data.decode()) == []
 
-# @pytest.mark.skip
+@pytest.mark.skip
 def test_create_creature(client):
 
     res = client.post("/creature", data={"name": "Birds"})
 
     assert res.status_code == 200
 
-@pytest.mark.skip
 def test_sample_creature(sample_creature):
 
     assert sample_creature.id == 1
 
-    assert sample_creature.name == "The Birds"
+    assert sample_creature.name == "Birds"
 
-@pytest.mark.skip
 def test_get_creature_by_id(client, sample_creature):
     res = client.get(f"/creature/{sample_creature.id}")
 
     creature_dict = json.loads(res.data.decode())
 
-    assert creature_dict["name"] == "The Birds"
+    assert creature_dict["name"] == "Birds"
 
 @pytest.mark.skip
 def test_create_creature_and_check(client):
 
-    client.post("/creature", data={"name": "The Birds"})
+    client.post("/creature", data={"name": "Birds"})
 
     res = client.get("/creature")
 
@@ -43,9 +41,8 @@ def test_create_creature_and_check(client):
 
     assert len(creature) == 1
 
-    assert creature[0]["name"] == "The Birds"
+    assert creature[0]["name"] == "Birds"
 
-@pytest.mark.skip
 def test_create_creature_and_fetch(client, sample_creature):
 
     res = client.get(f"/creature/{sample_creature.id}")
@@ -54,9 +51,8 @@ def test_create_creature_and_fetch(client, sample_creature):
 
     creature_dict = json.loads(res.data.decode())
 
-    assert creature_dict["name"] == "The Birds"
+    assert creature_dict["name"] == "Birds"
 
-@pytest.mark.skip
 def test_update_creature(client, sample_creature):
 
     res = client.put(f"/creature/{sample_creature.id}", data={"name": "The Reptiles"})
@@ -71,15 +67,13 @@ def test_update_creature(client, sample_creature):
 
     assert creature_dict["name"] == "The Reptiles"
 
-@pytest.mark.skip
-def test_get_creature_with_winged_creature(client, sample_artist):
-    res = client.get(f"/creature/{sample_artist.creature_id}")
+def test_get_creature_with_winged_creature(client, sample_winged_creature):
+    res = client.get(f"/creature/{sample_winged_creature.creature_id}")
 
     creature_dict = json.loads(res.data.decode())
 
     assert creature_dict["winged_creature"][0]["name"] == "Flightless cormorant"
 
-@pytest.mark.skip
 def test_delete_creature(client, sample_creature):
 
     res = client.delete(f"/creature/{sample_creature.id}")
